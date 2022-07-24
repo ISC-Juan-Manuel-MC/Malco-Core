@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MalCoCorporate\\Proyectos\\Malco CORE\\Malco-Core\\MCC.Dominio\\MCC.Dominio\\MCC.Dominio.csproj",
-      "projectName": "MCC.Dominio",
-      "projectPath": "D:\\MalCoCorporate\\Proyectos\\Malco CORE\\Malco-Core\\MCC.Dominio\\MCC.Dominio\\MCC.Dominio.csproj",
+      "projectUniqueName": "D:\\MalCoCorporate\\Proyectos\\Malco CORE\\Malco-Core\\MCC.Dominio\\MCC.Dominio\\Domain.csproj",
+      "projectName": "Domain",
+      "projectPath": "D:\\MalCoCorporate\\Proyectos\\Malco CORE\\Malco-Core\\MCC.Dominio\\MCC.Dominio\\Domain.csproj",
       "packagesPath": "C:\\Users\\ISC_J\\.nuget\\packages\\",
       "outputPath": "D:\\MalCoCorporate\\Proyectos\\Malco CORE\\Malco-Core\\MCC.Dominio\\MCC.Dominio\\obj\\",
       "projectStyle": "PackageReference",

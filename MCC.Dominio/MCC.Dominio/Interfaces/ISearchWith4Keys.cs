@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCC.Dominio.Interfaces
+namespace MCC.Domain.Interfaces
 {
     public interface ISearchWith4Keys<TEntity, EntityID1, EntityID2, EntityID3, EntityID4>
     {

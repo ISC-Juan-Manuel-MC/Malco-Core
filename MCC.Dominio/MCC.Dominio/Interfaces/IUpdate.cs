@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCC.Dominio.Interfaces
+namespace MCC.Domain.Interfaces
 {
     public interface IUpdate<TEntity>
     {

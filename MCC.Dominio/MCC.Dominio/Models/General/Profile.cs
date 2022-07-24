@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCC.Dominio.Models.General
+namespace MCC.Domain.Models.General
 {
     public class Profile
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MCC.Dominio.Interfaces.Repositories.Security
+namespace MCC.Domain.Interfaces.Repositories.Security
 {
     public interface IContractRepo<TContract, TContractID>
         : IBaseRepository<TContract, TContractID>

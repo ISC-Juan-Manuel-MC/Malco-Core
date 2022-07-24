@@ -1,0 +1,15 @@
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\bin\Debug\net6.0\Domain.exe
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\bin\Debug\net6.0\Domain.deps.json
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\bin\Debug\net6.0\Domain.runtimeconfig.json
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\bin\Debug\net6.0\Domain.dll
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\bin\Debug\net6.0\Domain.pdb
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.csproj.AssemblyReference.cache
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.AssemblyInfo.cs
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.dll
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\refint\Domain.dll
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.pdb
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\Domain.genruntimeconfig.cache
+D:\MalCoCorporate\Proyectos\Malco CORE\Malco-Core\MCC.Dominio\MCC.Dominio\obj\Debug\net6.0\ref\Domain.dll
