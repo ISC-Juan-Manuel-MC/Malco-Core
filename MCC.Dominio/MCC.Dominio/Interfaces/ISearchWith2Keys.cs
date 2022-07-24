@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MCC.Dominio.Interfaces
 {
-    public interface IEdit<TEntity>
+    public interface ISearchWith2Keys<TEntity, EntityID1, EntityID2>
     {
-        void Edit(TEntity entity);
+        TEntity Find(EntityID1 entityID1, EntityID2 entityID2);
+        List<TEntity> FindAll();
     }
 }

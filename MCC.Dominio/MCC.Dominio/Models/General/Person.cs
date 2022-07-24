@@ -12,7 +12,7 @@ namespace MCC.Dominio.Models.General
         public string FirstName { get; set; } = String.Empty;
         public string? SecondName { get; set; } = null;
         public string PatherLastName { get; set; } = String.Empty;
-        public string MotherLastName { get; set; } = String.Empty;
+        public string? MotherLastName { get; set; } = null;
         public DateOnly Birthday { get; set; }
         public Guid ActivityLogID { get; set; } = Guid.Empty;
 

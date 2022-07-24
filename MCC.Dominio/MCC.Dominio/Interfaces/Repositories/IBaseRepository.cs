@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MCC.Dominio.Interfaces.Repositories
 {
     public interface IBaseRepository<TEntity, TEntityID>
-        : IAdd<TEntity>, IEdit<TEntity>, IDelete<TEntityID>, ISearch<TEntity,TEntityID>, IDBTransactions
+        : IAdd<TEntity>, IUpdate<TEntity>, IDelete<TEntityID>, ISearch<TEntity,TEntityID>, IDBTransactions
     {
 
     }
