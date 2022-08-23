@@ -9,6 +9,7 @@ namespace MCC.Domain.Interfaces
     public interface IDBTransactions
     {
         void BeginTransaction();
+        bool TransactionIsInProgress();
         void SendToSaveAllChanges();
         void CommitTransaction();
         void RollbackTransaction();

@@ -9,6 +9,6 @@ namespace MCC.Domain.Models.General
     public class PersonToProfile
     {
         public Guid PersonID { get; set; } = Guid.Empty;
-        public Guid ProfileID { get; set; } = Guid.Empty;
+        public string ProfileID { get; set; } = String.Empty;
     }
 }

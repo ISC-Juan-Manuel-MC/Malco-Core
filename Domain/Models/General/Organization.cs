@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Models;
+using MCC.Domain.Models.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MCC.Domain.Models.General
 {
-    public class Organization
+    public class Organization : BasicModel
     {
+        public Organization() : base()
+        {
+        }
+
         public Guid OrganizationID { get; set; } = Guid.Empty;
         /// <summary>
         /// Country identifier => In México is RFC
@@ -17,7 +23,6 @@ namespace MCC.Domain.Models.General
         public bool IsCompany { get; set; } = false;
         public Guid PersonID { get; set; } = Guid.Empty;
         public OrganizationStatus Status { get; set; } = OrganizationStatus.CREATED;
-        public Guid ActivityLogID { get; set; } = Guid.Empty;
 
 
         /// <summary>

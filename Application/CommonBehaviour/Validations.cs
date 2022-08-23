@@ -14,7 +14,15 @@ namespace Application.CommonBehaviour
         {
             if (entity == null)
             {
-                throw new EntityNotExistError();
+                throw new EntityNotExistError(typeof(TEntity).Name);
+            }
+        }
+
+        public static void EntityExist<TEntity>(TEntity entity)
+        {
+            if (entity != null)
+            {
+                throw new ExistingEntityError(typeof(TEntity).Name);
             }
         }
     }

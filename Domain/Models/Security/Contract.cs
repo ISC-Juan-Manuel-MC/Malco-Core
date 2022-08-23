@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace MCC.Domain.Models.Security
 {
-    public class Contract
+    public class Contract : BasicModel
     {
+        public Contract() : base()
+        {
+        }
+
         public Guid ContractID { get; set; } = Guid.Empty;
         public Guid LicenseID { get; set; } = Guid.Empty;
         public Guid AppID { get; set; } = Guid.Empty;
@@ -16,9 +21,7 @@ namespace MCC.Domain.Models.Security
         public DateOnly StartDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public DateOnly EndDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public ContractStatus Status { get; set; } = ContractStatus.VALID;
-        public Guid ActivityLogID { get; set; } = Guid.Empty;
-
-
+    
         /// <summary>
         /// <list type="bullet">
         /// <item>

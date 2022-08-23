@@ -10,8 +10,14 @@ namespace Application.Errors
 {
     internal class EntityNotExistError : Exception
     {
-        public EntityNotExistError() : base("Entity Not Exist", new ArgumentNullException())
+        public readonly string EntityName;
+
+        public EntityNotExistError(string entityName) : base(
+            "Entity (" + entityName + ") Not Exist", 
+            new ArgumentNullException()
+            )
         {
+            EntityName = entityName;
         }
     }
 }

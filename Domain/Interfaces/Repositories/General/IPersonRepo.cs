@@ -9,5 +9,6 @@ namespace MCC.Domain.Interfaces.Repositories.General
     public interface IPersonRepo<TPerson,TPersonID>
         :IAdd<TPerson>, IUpdate<TPerson>, ISearch<TPerson,TPersonID>, IDBTransactions
     {
+        TPerson FindByName(string FirstName, string LastName);
     }
 }

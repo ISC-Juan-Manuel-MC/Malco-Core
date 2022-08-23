@@ -39,22 +39,8 @@ namespace Application.Services.General
 
         public void Disabled(Guid entityID)
         {
-            Organization entity = Find(entityID);
-            entity.Status = Organization.OrganizationStatus.SUSPENDED;
-            repository.Update(entity);
-            repository.SendToSaveAllChanges();
+            this.Delete(entityID);
         }
-
-        public Organization Find(Guid entityID)
-        {
-            return repository.Find(entityID);
-        }
-
-        public List<Organization> FindAll()
-        {
-            return repository.FindAll();
-        }
-
         public void Hide(Guid entityID)
         {
             Organization entity = Find(entityID);
@@ -63,10 +49,21 @@ namespace Application.Services.General
             repository.SendToSaveAllChanges();
         }
 
+        public Organization Find(Guid entityID)
+        {
+            Organization entity = repository.Find(entityID);
+            Validations.NonNullEntity<Organization>(entity);
+            return entity;
+        }
+
+        public List<Organization> FindAll()
+        {
+            return repository.GetAll();
+        }
+
         public void Update(Organization entity)
         {
             Validations.NonNullEntity(entity);
-
             repository.Update(entity);
             repository.SendToSaveAllChanges();
         }

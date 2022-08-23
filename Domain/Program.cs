@@ -1,2 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Domain layer is working!!");
+/*
+using MCC.Domain.Models.Security;
+
+App EntityDemo = new App() { Name = "Taxer" };
+
+Console.WriteLine("Pueba de jorge: " + EntityDemo.Name);
+*/
+Console.ReadKey();

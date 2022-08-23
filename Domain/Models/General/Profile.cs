@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Models;
+using MCC.Domain.Models.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace MCC.Domain.Models.General
 {
-    public class Profile
+    public class Profile: BasicModel
     {
+        public Profile(): base()
+        {
+        }
+
         /// <summary>
         /// Is the registered email account
         /// </summary>
@@ -15,7 +21,7 @@ namespace MCC.Domain.Models.General
         public string Password { get; set; } = String.Empty;
         public string DisplayName { get; set; } = String.Empty;
         public ProfileStatus Status { get; set; } = ProfileStatus.CREATED;
-        public Guid ActivityLogID { get; set; } = Guid.Empty;
+   
 
         /// <summary>
         /// <list type="bullet">
