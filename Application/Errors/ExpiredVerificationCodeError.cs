@@ -8,13 +8,14 @@ namespace Application.Errors
 {
     public class ExpiredVerificationCodeError : Exception
     {
+        public readonly int VerificationCode;
 
         public ExpiredVerificationCodeError(int verificationCode) : base(
             "The Verification Code " + verificationCode + " is expired",
             new InvalidOperationException()
             )
         {
+            VerificationCode = verificationCode;
         }
-
     }
 }

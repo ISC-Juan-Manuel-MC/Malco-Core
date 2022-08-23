@@ -10,7 +10,7 @@ namespace MCC.Domain.Interfaces.Repositories.General
         : IAdd<TPersonToProfile>, IUpdate<TPersonToProfile>, ISearchWith2Keys<TPersonToProfile, TPersonID, TProfileID>, IDBTransactions
     {
         IEnumerable<TPersonToProfile> FindByPersonID(TPersonID personID);
-        IEnumerable<TPersonToProfile> FindByProfileID(TProfileID profileID);
+        TPersonToProfile FindByProfileID(TProfileID profileID);
 
     }
 }

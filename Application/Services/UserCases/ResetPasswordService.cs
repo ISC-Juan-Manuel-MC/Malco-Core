@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Application.CommonBehaviour;
 using Application.Models.General;
 using Application.Models.Mappers.General;
@@ -13,6 +14,7 @@ using Domain.Interfaces.Repositories.Security;
 using Domain.Models.Security;
 using MCC.Domain.Interfaces.Repositories.General;
 using MCC.Domain.Models.General;
+using Application.Errors;
 
 namespace Application.Services.UserCases
 {
@@ -37,8 +39,9 @@ namespace Application.Services.UserCases
         /// </summary>
         /// <param name="email"></param>
         /// <returns>
-        /// VerificationPINPublicModel Or EntityNotExistError
+        /// VerificationPINPublicModel 
         /// </returns>
+        /// <exception cref="EntityNotExistError"></exception>
         public VerificationPINPublicModel GetVerificationCode(string email)
         {
             Profile profile = ProfileService.FindByID(email);
@@ -52,8 +55,10 @@ namespace Application.Services.UserCases
         /// <param name="email"></param>
         /// <param name="PIN"></param>
         /// <returns>
-        ///  VerificationPINPublicModel Or EntityNotExistError Or ExpiredVerificationCodeError
+        ///  VerificationPINPublicModel
         ///  </returns>
+        /// <exception cref="EntityNotExistError"></exception>
+        /// <exception cref="ExpiredVerificationCodeError"></exception>
         public VerificationPINPublicModel VerifyCodeToResetPassword(string email, int PIN)
         {
             return VerificationPINsService.VerifyPIN(email, PIN);
@@ -65,8 +70,9 @@ namespace Application.Services.UserCases
         /// <param name="profileID"></param>
         /// <param name="newPassword"></param>
         /// <returns>
-        /// ProfilePublicModel Or EntityNotExistError
+        /// ProfilePublicModel
         /// </returns>
+        /// <exception cref="EntityNotExistError"></exception>
         public ProfilePublicModel ResetPassword(string profileID, string newPassword)
         {
             Profile entity = ProfileService.FindByID(profileID);

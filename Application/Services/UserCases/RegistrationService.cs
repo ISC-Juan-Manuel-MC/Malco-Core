@@ -94,12 +94,21 @@ namespace Application.Services.UserCases
 
             try
             {
-                Validations.EntityExist(PersonService.FindByName(NewPerson.FirstName, NewPerson.LastName));
                 Validations.EntityExist(ProfileService.FindByID(NewProfile.ProfileID));
+                Person oldPerson = PersonService.FindByName(NewPerson.FirstName, NewPerson.LastName);
 
                 ProfileService.BeginTransaction();
 
-                NewPerson = PersonService.Add(NewPerson);
+                if (oldPerson != null)
+                {
+                    NewPerson.PersonID = oldPerson.PersonID;
+                    PersonService.Update(NewPerson);
+                }
+                else
+                {
+                    NewPerson = PersonService.Add(NewPerson);
+                }
+
                 NewProfile = ProfileService.Add(NewProfile);
                 PersonToProfileService.JoinPersonToProfile(NewPerson.PersonID, NewProfile.ProfileID);
 

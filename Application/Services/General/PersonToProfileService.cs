@@ -44,7 +44,7 @@ namespace Application.Services.General
             return repository.FindByPersonID(personID);
         }
 
-        public IEnumerable<PersonToProfile> FindByProfileID(string profileID)
+        public PersonToProfile FindByProfileID(string profileID)
         {
             return repository.FindByProfileID(profileID);
         }
