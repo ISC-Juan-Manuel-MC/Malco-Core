@@ -14,7 +14,7 @@ namespace Infrastructure.DataAccess.Repositories.General
     {
         MCCContext Db;
 
-        private PersonRepo(MCCContext _db)
+        public PersonRepo(MCCContext _db)
         {
             this.Db = _db;
         }

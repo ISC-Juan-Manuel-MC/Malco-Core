@@ -11,7 +11,7 @@ using Infrastructure.DataAccess.Properties;
 
 namespace Infrastructure.DataAccess.Contexts
 {
-    internal class MCCContext: DbContext
+    public class MCCContext: DbContext
     {
         #region GeneralModule
         public DbSet<Organization> Organization { get; set; }
