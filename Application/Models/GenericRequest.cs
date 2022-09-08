@@ -9,20 +9,12 @@ namespace Application.Models
     public class GenericRequest<TEntity>
     {
         #region Cambiar a header
-        readonly public Guid AppID;
-        readonly public Guid OrganizationID;
-        readonly public String ProfileID;
+        public Guid AppID { get; set; }
+        public Guid OrganizationID { get; set; }
+        public String ProfileID { get; set; }
         #endregion
 
-        readonly public TEntity Data;
+        public TEntity Data { get; set; }
 
-
-        public GenericRequest(Guid appID, Guid organizationID, string profileID, TEntity data)
-        {
-            AppID = appID;
-            OrganizationID = organizationID;
-            ProfileID = profileID;
-            Data = data;
-        }
     }
 }

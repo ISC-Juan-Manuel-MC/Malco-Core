@@ -8,12 +8,12 @@ namespace Application.Models.General
 {
     public class ProfilePublicModel
     {
-        readonly public string Email;
-        readonly public string DisplayName;
-        readonly public string Status;
+        public string Email { get; set; }
+        public string DisplayName { get; set; }
+        public string Status { get; set; }
 
-        readonly public PersonPublicModel Person;
-        readonly public List<OrganizationPublicModel> Organizations;
+        public PersonPublicModel Person { get; set; }
+        public List<OrganizationPublicModel> Organizations { get; set; }
 
         public ProfilePublicModel(string email, string displayName, string status, PersonPublicModel person)
         {

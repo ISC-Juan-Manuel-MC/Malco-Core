@@ -37,6 +37,8 @@ namespace Infrastructure.DataAccess.Contexts
         {
             base.OnModelCreating(builder);
 
+            builder.HasDefaultSchema("Module_general");
+
             builder.ApplyConfiguration(new OrganizationConfig());
             builder.ApplyConfiguration(new OrganizationRatingConfig());
             builder.ApplyConfiguration(new PersonConfig());

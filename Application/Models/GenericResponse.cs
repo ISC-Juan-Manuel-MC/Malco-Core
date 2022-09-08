@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.Models
 {
-    internal class GenericResponse<TEntity>
+    public class GenericResponse<TEntity>
     {
-        readonly public TEntity Payload;
+        public TEntity Payload;
 
         public GenericResponse(TEntity payload)
         {

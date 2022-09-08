@@ -8,11 +8,11 @@ namespace Application.Models.General
 {
     public class OrganizationPublicModel
     {
-        readonly public Guid OrganizationID;
-        readonly public string CountryID;
-        readonly public string Name;
-        readonly public Boolean IsCompany;
-        readonly public string Status;
+        public Guid OrganizationID { get; set; }
+        public string CountryID { get; set; }
+        public string Name { get; set; }
+        public Boolean IsCompany { get; set; }
+        public string Status { get; set; }
 
         public OrganizationPublicModel(Guid organizationID, string countryID, string name, bool isCompany, string status)
         {
