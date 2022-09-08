@@ -12,5 +12,10 @@ namespace MCC.Domain.Models.General
         public Guid OrganizationID { get; set; } = Guid.Empty;
         public int Rating { get; set; } = 0;
         public bool Excluded { get; set; } = false;
+
+        #region FKs
+        public Organization FKOrganization { get; set; } = new Organization();
+
+        #endregion
     }
 }

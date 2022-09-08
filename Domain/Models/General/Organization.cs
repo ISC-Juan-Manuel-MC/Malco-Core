@@ -25,6 +25,13 @@ namespace MCC.Domain.Models.General
         public OrganizationStatus Status { get; set; } = OrganizationStatus.CREATED;
 
 
+        #region FKs
+        public List<OrganizationRating> FKOrganizationRating { get; set; } = new List<OrganizationRating>();
+        public List<ProfileToOrganizations> FKProfileToOrganizations { get; set; } = new List<ProfileToOrganizations>();
+        public List<PersonToOrganization> FKPersonToOrganization { get; set; } = new List<PersonToOrganization>();
+
+        #endregion
+
         /// <summary>
         /// <list type="bullet">
         /// <item>

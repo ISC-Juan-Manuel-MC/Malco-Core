@@ -20,7 +20,11 @@ namespace MCC.Domain.Models.General
         public PersonGender Gender { get; set; } = PersonGender.Other;
         public string Cellphone { get; set; } = String.Empty;
         public DateOnly Birthday { get; set; }
- 
+
+        #region FKs
+        public List<PersonToOrganization> FKPersonToOrganization { get; set; } = new List<PersonToOrganization>();
+        public PersonToProfile FKPersonToProfile { get; set; } = new PersonToProfile();
+        #endregion
 
         /// <summary>
         /// <list type="bullet">

@@ -21,7 +21,11 @@ namespace MCC.Domain.Models.General
         public string Password { get; set; } = String.Empty;
         public string DisplayName { get; set; } = String.Empty;
         public ProfileStatus Status { get; set; } = ProfileStatus.CREATED;
-   
+
+        #region FKs
+        public List<ProfileToOrganizations> FKProfileToOrganizations { get; set; } = new List<ProfileToOrganizations>();
+        public PersonToProfile FKPersonToProfile { get; set; } = new PersonToProfile();
+        #endregion
 
         /// <summary>
         /// <list type="bullet">

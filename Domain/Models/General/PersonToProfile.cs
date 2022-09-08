@@ -10,5 +10,10 @@ namespace MCC.Domain.Models.General
     {
         public Guid PersonID { get; set; } = Guid.Empty;
         public string ProfileID { get; set; } = String.Empty;
+
+        #region FKs
+        public Person FKPerson { get; set; } = new Person();
+        public Profile FKProfile { get; set; } = new Profile();
+        #endregion
     }
 }
