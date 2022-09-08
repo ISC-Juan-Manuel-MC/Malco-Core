@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Database" xml:space="preserve">
-    <value />
+    <value>MalcoCorporate_Core</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value />
+    <value>DevUser</value>
   </data>
   <data name="Server" xml:space="preserve">
-    <value />
+    <value>LAPTOP-QFL3OT6P\DEVSERVER</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value />
+    <value>sa</value>
   </data>
 </root>

@@ -61,7 +61,7 @@ namespace Infrastructure.DataAccess.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a MalcoCorporate_Core.
         /// </summary>
         internal static string Database {
             get {
@@ -70,7 +70,7 @@ namespace Infrastructure.DataAccess.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a DevUser.
         /// </summary>
         internal static string Password {
             get {
@@ -79,7 +79,7 @@ namespace Infrastructure.DataAccess.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a LAPTOP-QFL3OT6P\DEVSERVER.
         /// </summary>
         internal static string Server {
             get {
@@ -88,7 +88,7 @@ namespace Infrastructure.DataAccess.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a sa.
         /// </summary>
         internal static string User {
             get {
