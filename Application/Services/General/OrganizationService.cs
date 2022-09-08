@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 using MCC.Domain.Models.General;
 using MCC.Domain.Interfaces.Repositories.General;
-using Application.Interfaces;
 using Application.CommonBehaviour;
 
 namespace Application.Services.General
 {
-    public class OrganizationService : IBaseService<Organization, Guid>
+    public class OrganizationService : BasicService
     {
         private readonly IOrganizationRepo<Organization, Guid> repository;
 
