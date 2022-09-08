@@ -3,26 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using MCC.Domain.Models.General;
 using MCC.Domain.Interfaces.Repositories.General;
 using Infrastructure.DataAccess.Contexts;
 
 namespace Infrastructure.DataAccess.Repositories.General
 {
-    public class OrganizationRepo : IOrganizationRepo<Organization, Guid>
+    public class PersonToOrganizationRepo : IPersonToOrganizationRepo<PersonToOrganization,Guid,Guid>
     {
         MCCContext Db;
 
-        private OrganizationRepo(MCCContext _db)
+        private PersonToOrganizationRepo(MCCContext _db)
         {
             this.Db = _db;
         }
 
-        public Organization Add(Organization entity)
+        public PersonToOrganization Add(PersonToOrganization entity)
         {
-            entity.OrganizationID = Guid.NewGuid();
-            Db.Organization.Add(entity);
+            Db.PersonToOrganization.Add(entity);
             return entity;
         }
 
@@ -44,14 +42,16 @@ namespace Infrastructure.DataAccess.Repositories.General
             Db.Database.CommitTransaction();
         }
 
-        public Organization? Find(Guid entityID)
+        public PersonToOrganization? Find(Guid entityID1, Guid entityID2)
         {
-            return Db.Organization.Where(e => e.OrganizationID == entityID).FirstOrDefault();
+            return Db.PersonToOrganization
+                .Where(e => e.PersonID == entityID1 && e.OrganizationID ==entityID2)
+                .FirstOrDefault();
         }
 
-        public List<Organization> GetAll()
+        public List<PersonToOrganization> GetAll()
         {
-            return Db.Organization.ToList();
+            return Db.PersonToOrganization.ToList();
         }
 
         public void RollbackTransaction()
@@ -69,18 +69,5 @@ namespace Infrastructure.DataAccess.Repositories.General
             return Db.Database.CurrentTransaction != null;
         }
 
-        public void Update(Organization entity)
-        {
-            Organization? OldEntity = Find(entity.OrganizationID);
-            if (OldEntity != null)
-            {
-                OldEntity.Name = entity.Name;
-                OldEntity.IsCompany = entity.IsCompany;
-                OldEntity.PersonID = entity.PersonID;
-                OldEntity.Status = entity.Status;
-                //Activity log pending
-                Db.Organization.Update(entity);
-            }
-        }
     }
 }

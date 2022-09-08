@@ -8,7 +8,7 @@ namespace MCC.Domain.Interfaces
 {
     public interface ISearch<TEntity,EntityID>
     {
-        TEntity Find(EntityID entityID);
+        TEntity? Find(EntityID entityID);
         List<TEntity> GetAll();
     }
 }

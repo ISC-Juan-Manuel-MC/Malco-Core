@@ -8,7 +8,7 @@ namespace MCC.Domain.Interfaces
 {
     public interface ISearchWith2Keys<TEntity, EntityID1, EntityID2>
     {
-        TEntity Find(EntityID1 entityID1, EntityID2 entityID2);
+        TEntity? Find(EntityID1 entityID1, EntityID2 entityID2);
         List<TEntity> GetAll();
     }
 }

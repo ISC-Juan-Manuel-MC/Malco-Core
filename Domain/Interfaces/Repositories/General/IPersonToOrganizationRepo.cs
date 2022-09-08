@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MCC.Domain.Interfaces.Repositories.General
 {
-    internal interface IPersonToOrganizationRepo<TPersonToOrganization, TPersonID, TOrganizationID>
-        : IAdd<TPersonToOrganization>, IUpdate<TPersonToOrganization>, ISearchWith2Keys<TPersonToOrganization, TPersonID, TOrganizationID>, IDBTransactions
+    public interface IPersonToOrganizationRepo<TPersonToOrganization, TPersonID, TOrganizationID>
+        : IAdd<TPersonToOrganization>, ISearchWith2Keys<TPersonToOrganization, TPersonID, TOrganizationID>, IDBTransactions
     {
     }
 }

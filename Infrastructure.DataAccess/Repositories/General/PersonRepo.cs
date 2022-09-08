@@ -10,19 +10,19 @@ using Infrastructure.DataAccess.Contexts;
 
 namespace Infrastructure.DataAccess.Repositories.General
 {
-    public class OrganizationRepo : IOrganizationRepo<Organization, Guid>
+    public class PersonRepo : IPersonRepo<Person, Guid>
     {
         MCCContext Db;
 
-        private OrganizationRepo(MCCContext _db)
+        private PersonRepo(MCCContext _db)
         {
             this.Db = _db;
         }
 
-        public Organization Add(Organization entity)
+        public Person Add(Person entity)
         {
-            entity.OrganizationID = Guid.NewGuid();
-            Db.Organization.Add(entity);
+            entity.PersonID = Guid.NewGuid();
+            Db.Person.Add(entity);
             return entity;
         }
 
@@ -44,14 +44,21 @@ namespace Infrastructure.DataAccess.Repositories.General
             Db.Database.CommitTransaction();
         }
 
-        public Organization? Find(Guid entityID)
+        public Person? Find(Guid entityID)
         {
-            return Db.Organization.Where(e => e.OrganizationID == entityID).FirstOrDefault();
+            return Db.Person.Where(e => e.PersonID == entityID).FirstOrDefault();
         }
 
-        public List<Organization> GetAll()
+        public Person? FindByName(string FirstName, string LastName)
         {
-            return Db.Organization.ToList();
+            return Db.Person
+                .Where(e => e.FirstName == FirstName && e.LastName == LastName)
+                .FirstOrDefault();
+        }
+
+        public List<Person> GetAll()
+        {
+            return Db.Person.ToList();
         }
 
         public void RollbackTransaction()
@@ -69,17 +76,17 @@ namespace Infrastructure.DataAccess.Repositories.General
             return Db.Database.CurrentTransaction != null;
         }
 
-        public void Update(Organization entity)
+        public void Update(Person entity)
         {
-            Organization? OldEntity = Find(entity.OrganizationID);
+            Person? OldEntity = Find(entity.PersonID);
             if (OldEntity != null)
             {
-                OldEntity.Name = entity.Name;
-                OldEntity.IsCompany = entity.IsCompany;
-                OldEntity.PersonID = entity.PersonID;
-                OldEntity.Status = entity.Status;
+                OldEntity.FirstName = entity.FirstName;
+                OldEntity.LastName = entity.LastName;
+                OldEntity.Birthday = entity.Birthday;
+                OldEntity.Cellphone = entity.Cellphone;
                 //Activity log pending
-                Db.Organization.Update(entity);
+                Db.Person.Update(entity);
             }
         }
     }

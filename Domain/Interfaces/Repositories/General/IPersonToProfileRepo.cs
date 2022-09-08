@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace MCC.Domain.Interfaces.Repositories.General
 {
     public interface IPersonToProfileRepo<TPersonToProfile, TPersonID, TProfileID>
-        : IAdd<TPersonToProfile>, IUpdate<TPersonToProfile>, ISearchWith2Keys<TPersonToProfile, TPersonID, TProfileID>, IDBTransactions
+        : IAdd<TPersonToProfile>, ISearchWith2Keys<TPersonToProfile, TPersonID, TProfileID>, IDBTransactions
     {
         IEnumerable<TPersonToProfile> FindByPersonID(TPersonID personID);
-        TPersonToProfile FindByProfileID(TProfileID profileID);
+        TPersonToProfile? FindByProfileID(TProfileID profileID);
 
     }
 }

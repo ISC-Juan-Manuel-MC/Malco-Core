@@ -10,19 +10,18 @@ using Infrastructure.DataAccess.Contexts;
 
 namespace Infrastructure.DataAccess.Repositories.General
 {
-    public class OrganizationRepo : IOrganizationRepo<Organization, Guid>
+    public class PersonToProfileRepo : IPersonToProfileRepo<PersonToProfile,Guid,String>
     {
         MCCContext Db;
 
-        private OrganizationRepo(MCCContext _db)
+        private PersonToProfileRepo(MCCContext _db)
         {
             this.Db = _db;
         }
 
-        public Organization Add(Organization entity)
+        public PersonToProfile Add(PersonToProfile entity)
         {
-            entity.OrganizationID = Guid.NewGuid();
-            Db.Organization.Add(entity);
+            Db.PersonToProfile.Add(entity);
             return entity;
         }
 
@@ -44,14 +43,30 @@ namespace Infrastructure.DataAccess.Repositories.General
             Db.Database.CommitTransaction();
         }
 
-        public Organization? Find(Guid entityID)
+        public PersonToProfile? Find(Guid entityID1, string entityID2)
         {
-            return Db.Organization.Where(e => e.OrganizationID == entityID).FirstOrDefault();
+            return Db.PersonToProfile
+                .Where(e => e.PersonID == entityID1 && e.ProfileID == entityID2)
+                .FirstOrDefault();
         }
 
-        public List<Organization> GetAll()
+        public IEnumerable<PersonToProfile> FindByPersonID(Guid personID)
         {
-            return Db.Organization.ToList();
+            return Db.PersonToProfile
+                .Where(e => e.PersonID == personID)
+                .ToList();
+        }
+
+        public PersonToProfile? FindByProfileID(string profileID)
+        {
+            return Db.PersonToProfile
+                .Where(e => e.ProfileID == profileID)
+                .FirstOrDefault();
+        }
+
+        public List<PersonToProfile> GetAll()
+        {
+            return Db.PersonToProfile.ToList();
         }
 
         public void RollbackTransaction()
@@ -69,18 +84,5 @@ namespace Infrastructure.DataAccess.Repositories.General
             return Db.Database.CurrentTransaction != null;
         }
 
-        public void Update(Organization entity)
-        {
-            Organization? OldEntity = Find(entity.OrganizationID);
-            if (OldEntity != null)
-            {
-                OldEntity.Name = entity.Name;
-                OldEntity.IsCompany = entity.IsCompany;
-                OldEntity.PersonID = entity.PersonID;
-                OldEntity.Status = entity.Status;
-                //Activity log pending
-                Db.Organization.Update(entity);
-            }
-        }
     }
 }
