@@ -14,32 +14,39 @@ namespace Infrastructure.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Login : ControllerBase
+    public class Registration : ControllerBase
     {
 
-        private LoginService CreateLoginService()
+        private RegistrationService CreateRegistrationService()
         {
             MCCContext Database = new();
             ProfileRepo ProfileRepo = new(Database);
             PersonToProfileRepo PersonToProfileRepo = new(Database);
             PersonRepo PersonRepo = new(Database);
-            return new LoginService(ProfileRepo, PersonToProfileRepo, PersonRepo);
+            return new RegistrationService(PersonToProfileRepo, PersonRepo, ProfileRepo);
         }
 
-        // POST api/<Login>
+        // POST api/<Registration>
         [HttpPost]
-        public ActionResult<GenericResponse<ProfilePublicModel>> Post([FromBody] LoginRequestModel Request)
+        public ActionResult<GenericResponse<ProfilePublicModel>> Post([FromBody] RegistrationRequestModel request)
         {
             try
             {
-                LoginService Service = CreateLoginService();
-                ProfilePublicModel Profile = Service.Login(Request.Email, Request.Password);
+                RegistrationService Service = CreateRegistrationService();
+                ProfilePublicModel Profile = Service.Registration(
+                    request.email,
+                    request.password,
+                    request.firstName,
+                    request.lastName, 
+                    request.cellphone,
+                    request.gender,
+                    DateOnly.Parse(request.birthday));
                 GenericResponse<ProfilePublicModel> Response = new(Profile);
                 return Ok(JsonSerializer.Serialize(Response));
             }
             catch (Exception ex)
             {
-                if(ex.GetType() == typeof(EntityNotExistError))
+                if (ex.GetType() == typeof(EntityNotExistError))
                 {
                     return NotFound(ex.Message);
                 }
@@ -49,6 +56,5 @@ namespace Infrastructure.API.Controllers
                 }
             }
         }
-
     }
 }

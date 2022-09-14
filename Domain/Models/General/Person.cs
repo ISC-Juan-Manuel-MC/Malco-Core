@@ -14,7 +14,7 @@ namespace MCC.Domain.Models.General
         {
         }
 
-        public Guid PersonID { get; set; } = Guid.NewGuid();
+        public Guid PersonID { get; set; } = Guid.Empty;
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
         public PersonGender Gender { get; set; } = PersonGender.Other;
@@ -22,9 +22,11 @@ namespace MCC.Domain.Models.General
         public DateOnly Birthday { get; set; }
 
         #region FKs
-        public List<PersonToOrganization> FKPersonToOrganization { get; set; } = new List<PersonToOrganization>();
-        public PersonToProfile FKPersonToProfile { get; set; } = new PersonToProfile();
+        public List<PersonToOrganization> FKPersonToOrganization { get; set; }
+        public PersonToProfile FKPersonToProfile { get; set; }
         #endregion
+
+
 
         /// <summary>
         /// <list type="bullet">

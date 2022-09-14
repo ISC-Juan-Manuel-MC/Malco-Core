@@ -32,7 +32,10 @@ namespace Infrastructure.DataAccess.Repositories.General
 
         public void CloseTransaction()
         {
-            Db.Database.CurrentTransaction.Dispose();
+            if(Db.Database.CurrentTransaction != null)
+            {
+                Db.Database.CurrentTransaction.Dispose();
+            }
         }
 
         public void CommitTransaction()

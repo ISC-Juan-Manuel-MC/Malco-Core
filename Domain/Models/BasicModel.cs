@@ -9,23 +9,30 @@ namespace Domain.Models
 {
     public class BasicModel
     {
-        protected Guid ActivityLogID { get; set; } = Guid.NewGuid();
+        protected Guid ActivityLogID { get; set; } = Guid.Empty;
 
-        public ActivityLog ActivityLog 
-        { 
-            get => ActivityLog; 
-            set
-            {
-                ActivityLog = value;
-                if (ActivityLog != null)
-                {
-                    ActivityLogID = ActivityLog.ActivityLogID;
-                } else
-                {
-                    ActivityLogID = Guid.Empty;
-                }
-            }
-        }
+        public ActivityLog? ActivityLog { get; set; } = null;
+
+
+        //public ActivityLog? ActivityLog 
+        //{ 
+        //    get => ActivityLog; 
+        //    set
+        //    {
+        //        if(value != ActivityLog)
+        //        {
+        //            if (value != null)
+        //            {
+        //                ActivityLogID = value.ActivityLogID;
+        //            }
+        //            else
+        //            {
+        //                ActivityLogID = Guid.Empty;
+        //            }
+        //            ActivityLog = value;
+        //        }
+        //    }
+        //}
 
         public BasicModel()
         {

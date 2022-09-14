@@ -47,22 +47,31 @@ namespace Application.Services.UserCases
         /// <exception cref="UserOrPasswordIncorrectError"></exception>
         public ProfilePublicModel Login(string email, string password)
         {
-            Profile Profile = ProfileService.FindByID(email);
+            Profile? Profile = ProfileService.FindByID(email);
             string EncryptedPassword = InternalTools.Encrypt("encryption Key", password);
 
-            if (Profile.Password.Equals(EncryptedPassword))
+            if(Profile != null)
             {
-                PersonToProfile relationship = PersonToProfileService.FindByProfileID(Profile.ProfileID);
-                Person Person = PersonService.FindById(relationship.PersonID);
+                if (Profile.Password.Equals(EncryptedPassword))
+                {
+                    PersonToProfile relationship = PersonToProfileService.FindByProfileID(Profile.ProfileID);
+                    Person Person = PersonService.FindById(relationship.PersonID);
 
-                return ProfileMapper.GetApplicationEntity(
-                        Profile,
-                        PeopleMapper.GetApplicationEntity(Person)
-                        );
-            } else
-            {
-                throw new UserOrPasswordIncorrectError();
+                    return ProfileMapper.GetApplicationEntity(
+                            Profile,
+                            PeopleMapper.GetApplicationEntity(Person)
+                            );
+                }
+                else
+                {
+                    throw new UserOrPasswordIncorrectError();
+                }
             }
+            else
+            {
+                throw new EntityNotExistError("Profile");
+            }
+            
         }
     }
 }

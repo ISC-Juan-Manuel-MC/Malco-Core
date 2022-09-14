@@ -61,7 +61,7 @@ namespace Infrastructure.DataAccess.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a MalcoCorporate_Core.
+        ///   Busca una cadena traducida similar a MalcoCorporate_Core_example.
         /// </summary>
         internal static string Database {
             get {

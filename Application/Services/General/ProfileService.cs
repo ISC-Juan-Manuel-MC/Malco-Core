@@ -28,11 +28,9 @@ namespace Application.Services.General
         }
 
       
-        public Profile FindByID(string entityID)
+        public Profile? FindByID(string entityID)
         {
-            Profile entity = repository.Find(entityID);
-            Validations.NonNullEntity<Profile>(entity);
-            return entity;
+            return repository.Find(entityID);
         }
 
         public List<Profile> GetAll()
