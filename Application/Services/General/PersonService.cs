@@ -21,14 +21,14 @@ namespace Application.Services.General
             return newPerson;
         }
 
-        public Person FindByName(string FirstName, string LastName)
+        public Person? FindByName(string FirstName, string LastName)
         {
             return repository.FindByName(FirstName, LastName);
         }
 
-        public Person FindById(Guid entityID)
+        public Person? FindById(Guid entityID)
         {
-            Person entity = repository.Find(entityID);
+            Person? entity = repository.Find(entityID);
             Validations.NonNullEntity<Person>(entity);
             return entity;
         }

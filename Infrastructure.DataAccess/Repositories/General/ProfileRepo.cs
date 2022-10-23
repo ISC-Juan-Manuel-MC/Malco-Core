@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 using MCC.Domain.Models.General;
 using MCC.Domain.Interfaces.Repositories.General;
+using Infrastructure.DataAccess.Repositories.Security;
 using Infrastructure.DataAccess.Contexts;
+using Domain.Models;
 
 namespace Infrastructure.DataAccess.Repositories.General
 {
@@ -99,12 +101,12 @@ namespace Infrastructure.DataAccess.Repositories.General
 
         public void Update(Profile entity)
         {
-            Profile? OldEntity = Find(entity.ProfileID);
-            if (OldEntity != null)
+            Profile? oldEntity = Find(entity.ProfileID);
+            if (oldEntity != null)
             {
-                OldEntity.DisplayName = entity.DisplayName;
-                OldEntity.Password = entity.Password;
-                //Activity log pending
+                oldEntity.DisplayName = entity.DisplayName;
+                oldEntity.Password = entity.Password;
+                oldEntity.ActivityLogID = entity.ActivityLogID;
                 Db.Profile.Update(entity);
             }
         }

@@ -14,8 +14,17 @@ namespace Infrastructure.DataAccess.Configs.General
     {
         public void Configure(EntityTypeBuilder<Person> builder)
         {
-            builder.ToTable("Persons");
+            builder.ToTable("Persons", "Module_general");
             builder.HasKey(person => person.PersonID);
+
+            builder
+               .HasMany(persona => persona.FKPersonToOrganization)
+               .WithOne(rel => rel.FKPerson);
+
+            builder
+               .HasOne(persona => persona.FKPersonToProfile)
+               .WithOne(rel => rel.FKPerson);
+
         }
     }
 }

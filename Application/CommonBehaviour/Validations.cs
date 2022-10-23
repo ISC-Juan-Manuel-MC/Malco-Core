@@ -10,7 +10,7 @@ namespace Application.CommonBehaviour
 {
     internal class Validations
     {
-        public static void NonNullEntity<TEntity>(TEntity entity)
+        public static void NonNullEntity<TEntity>(TEntity? entity)
         {
             if (entity == null)
             {
@@ -18,7 +18,7 @@ namespace Application.CommonBehaviour
             }
         }
 
-        public static void EntityExist<TEntity>(TEntity entity)
+        public static void EntityExist<TEntity>(TEntity? entity)
         {
             if (entity != null)
             {

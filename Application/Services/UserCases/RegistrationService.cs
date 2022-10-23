@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Application.CommonBehaviour;
 using Application.Models.General;
 using Application.Models.Mappers.General;
+using Application.Models.Security;
 using Application.Services.General;
 using MCC.Domain.Interfaces.Repositories.General;
 using MCC.Domain.Models.General;
@@ -24,7 +25,8 @@ namespace Application.Services.UserCases
         public RegistrationService(
             IPersonToProfileRepo<PersonToProfile, Guid, String> personToProfileRepo,
             IPersonRepo<Person, Guid> personRepo,
-            IProfileRepo<Profile, String> profileRepo)
+            IProfileRepo<Profile, String> profileRepo
+        )
         {
             PersonToProfileService = new PersonToProfileService(personToProfileRepo);
             PersonService = new PersonService(personRepo);
@@ -70,6 +72,7 @@ namespace Application.Services.UserCases
         /// Function responsible for adding a new person and a new profile to the system,
         /// it also automatically creates the relationship between profile and person.
         /// </summary>
+        /// <param name="jwt"></param>
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <param name="firstName"></param>
@@ -81,6 +84,7 @@ namespace Application.Services.UserCases
         /// ProfilePublicModel or ExistingEntityError
         /// </returns>
         public ProfilePublicModel Registration(
+            JWTModel jwt,
             string email, 
             string password, 
             string firstName, 
@@ -111,6 +115,7 @@ namespace Application.Services.UserCases
 
                 NewProfile = ProfileService.Add(NewProfile);
                 PersonToProfileService.JoinPersonToProfile(NewPerson.PersonID, NewProfile.ProfileID);
+                //Join to organization
 
                 ProfileService.CommitTransaction();
 

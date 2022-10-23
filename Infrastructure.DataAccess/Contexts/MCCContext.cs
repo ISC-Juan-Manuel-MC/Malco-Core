@@ -9,6 +9,8 @@ using Infrastructure.DataAccess.Configs.General;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.DataAccess.Properties;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using MCC.Domain.Models.Security;
+using Infrastructure.DataAccess.Configs.Security;
 
 namespace Infrastructure.DataAccess.Contexts
 {
@@ -24,6 +26,13 @@ namespace Infrastructure.DataAccess.Contexts
         public DbSet<ProfileToOrganizations> ProfileToOrganizations { get; set; }
         #endregion
 
+        #region Security
+        public DbSet<ActivityLog> ActivityLog { get; set; }
+        public DbSet<App> App { get; set; }
+        public DbSet<Views> View { get; set; }
+
+        #endregion
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -37,8 +46,6 @@ namespace Infrastructure.DataAccess.Contexts
         {
             base.OnModelCreating(builder);
 
-            builder.HasDefaultSchema("Module_general");
-
             builder.ApplyConfiguration(new OrganizationConfig());
             builder.ApplyConfiguration(new OrganizationRatingConfig());
             builder.ApplyConfiguration(new PersonConfig());
@@ -46,6 +53,11 @@ namespace Infrastructure.DataAccess.Contexts
             builder.ApplyConfiguration(new PersonToProfileConfig());
             builder.ApplyConfiguration(new ProfileConfig());
             builder.ApplyConfiguration(new ProfileToOrganizationsConfig());
+            builder.ApplyConfiguration(new ActivityLogConfig());
+            builder.ApplyConfiguration(new AppConfig());
+            builder.ApplyConfiguration(new ViewConfig());
+
+
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder builder)

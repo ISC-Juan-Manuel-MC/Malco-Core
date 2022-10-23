@@ -14,12 +14,14 @@ namespace Infrastructure.DataAccess.Configs.General
     {
         public void Configure(EntityTypeBuilder<OrganizationRating> builder)
         {
-            builder.ToTable("OrganizationRating");
+            builder.ToTable("OrganizationRating", "Module_general");
             builder.HasKey(e => new { e.OrganizationID, e.OrganizationRatingID });
 
             builder
                 .HasOne(rating => rating.FKOrganization)
-                .WithMany(org => org.FKOrganizationRating);
+                .WithMany(org => org.FKOrganizationRating)
+                .HasForeignKey(FK => FK.OrganizationID)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

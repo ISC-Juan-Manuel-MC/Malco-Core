@@ -10,10 +10,6 @@ namespace MCC.Domain.Models.General
 {
     public class Organization : BasicModel
     {
-        public Organization() : base()
-        {
-        }
-
         public Guid OrganizationID { get; set; } = Guid.Empty;
         /// <summary>
         /// Country identifier => In México is RFC
@@ -26,9 +22,9 @@ namespace MCC.Domain.Models.General
 
 
         #region FKs
-        public List<OrganizationRating> FKOrganizationRating { get; set; } = new List<OrganizationRating>();
-        public List<ProfileToOrganizations> FKProfileToOrganizations { get; set; } = new List<ProfileToOrganizations>();
-        public List<PersonToOrganization> FKPersonToOrganization { get; set; } = new List<PersonToOrganization>();
+        public virtual List<OrganizationRating>? FKOrganizationRating { get; set; } 
+        public virtual List<ProfileToOrganizations>? FKProfileToOrganizations { get; set; } 
+        public virtual List<PersonToOrganization>? FKPersonToOrganization { get; set; }
 
         #endregion
 

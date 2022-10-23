@@ -22,8 +22,8 @@ namespace MCC.Domain.Models.General
         public DateOnly Birthday { get; set; }
 
         #region FKs
-        public List<PersonToOrganization> FKPersonToOrganization { get; set; }
-        public PersonToProfile FKPersonToProfile { get; set; }
+        public virtual List<PersonToOrganization>? FKPersonToOrganization { get; set; }
+        public virtual PersonToProfile? FKPersonToProfile { get; set; }
         #endregion
 
 

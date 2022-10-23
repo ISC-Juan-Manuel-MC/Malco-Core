@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MCC.Domain.Models.General;
 using MCC.Domain.Interfaces.Repositories.General;
 using Infrastructure.DataAccess.Contexts;
+using Infrastructure.DataAccess.Repositories.Security;
 
 namespace Infrastructure.DataAccess.Repositories.General
 {
@@ -17,6 +18,7 @@ namespace Infrastructure.DataAccess.Repositories.General
         private OrganizationRepo(MCCContext _db)
         {
             this.Db = _db;
+
         }
 
         public Organization Add(Organization entity)
@@ -71,14 +73,14 @@ namespace Infrastructure.DataAccess.Repositories.General
 
         public void Update(Organization entity)
         {
-            Organization? OldEntity = Find(entity.OrganizationID);
-            if (OldEntity != null)
+            Organization? oldProfile = Find(entity.OrganizationID);
+            if (oldProfile != null)
             {
-                OldEntity.Name = entity.Name;
-                OldEntity.IsCompany = entity.IsCompany;
-                OldEntity.PersonID = entity.PersonID;
-                OldEntity.Status = entity.Status;
-                //Activity log pending
+                oldProfile.Name = entity.Name;
+                oldProfile.IsCompany = entity.IsCompany;
+                oldProfile.PersonID = entity.PersonID;
+                oldProfile.Status = entity.Status;
+                oldProfile.ActivityLogID = entity.ActivityLogID;
                 Db.Organization.Update(entity);
             }
         }

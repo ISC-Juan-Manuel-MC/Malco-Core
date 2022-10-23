@@ -14,9 +14,22 @@ namespace Infrastructure.DataAccess.Configs.General
     {
         public void Configure(EntityTypeBuilder<Profile> builder)
         {
-            builder.ToTable("Profiles");
+            builder.ToTable("Profiles", "Module_general");
             builder.HasKey(profile => profile.ProfileID);
 
+            builder
+                .HasOne(prof => prof.FKActivityLog)
+                .WithOne(log => log.FKProfile)
+                .HasForeignKey<Profile>(FK => FK.ActivityLogID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder
+               .HasMany(profile => profile.FKProfileToOrganizations)
+               .WithOne(rel => rel.FKProfile);
+
+            builder
+              .HasOne(profile => profile.FKPersonToProfile)
+              .WithOne(rel => rel.FKProfile);
         }
     }
 }

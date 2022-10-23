@@ -12,8 +12,8 @@ namespace MCC.Domain.Models.General
         public Guid PersonID { get; set; } = Guid.Empty;
 
         #region FKs
-        public Organization FKOrganization { get; set; } = new Organization();
-        public Person FKPerson { get; set; } = new Person();
+        public virtual Organization? FKOrganization { get; set; }
+        public virtual Person? FKPerson { get; set; }
         #endregion
     }
 }

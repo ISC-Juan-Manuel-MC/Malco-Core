@@ -8,6 +8,7 @@ using Application.Errors;
 using Infrastructure.DataAccess.Contexts;
 using Infrastructure.DataAccess.Repositories.General;
 using System.Text.Json;
+using Application.Models.Security;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Infrastructure.API.Controllers
@@ -16,7 +17,12 @@ namespace Infrastructure.API.Controllers
     [ApiController]
     public class Registration : ControllerBase
     {
+        private JWTModel JWT;
 
+        private void GetJWT()
+        {
+            JWT = JWTModel.GetFakeModel();
+        }
         private RegistrationService CreateRegistrationService()
         {
             MCCContext Database = new();
@@ -32,8 +38,11 @@ namespace Infrastructure.API.Controllers
         {
             try
             {
+                this.GetJWT();
+
                 RegistrationService Service = CreateRegistrationService();
                 ProfilePublicModel Profile = Service.Registration(
+                    this.JWT,
                     request.email,
                     request.password,
                     request.firstName,

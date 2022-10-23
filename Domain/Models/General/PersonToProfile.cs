@@ -12,8 +12,8 @@ namespace MCC.Domain.Models.General
         public string ProfileID { get; set; } = String.Empty;
 
         #region FKs
-        public Person FKPerson { get; set; }
-        public Profile FKProfile { get; set; }
+        public virtual Person? FKPerson { get; set; }
+        public virtual Profile? FKProfile { get; set; }
         #endregion
 
     }

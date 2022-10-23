@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MCC.Domain.Models.General;
 using MCC.Domain.Interfaces.Repositories.General;
 using Infrastructure.DataAccess.Contexts;
+using Infrastructure.DataAccess.Repositories.Security;
 
 namespace Infrastructure.DataAccess.Repositories.General
 {
@@ -78,14 +79,14 @@ namespace Infrastructure.DataAccess.Repositories.General
 
         public void Update(Person entity)
         {
-            Person? OldEntity = Find(entity.PersonID);
-            if (OldEntity != null)
+            Person? oldProfile = Find(entity.PersonID);
+            if (oldProfile != null)
             {
-                OldEntity.FirstName = entity.FirstName;
-                OldEntity.LastName = entity.LastName;
-                OldEntity.Birthday = entity.Birthday;
-                OldEntity.Cellphone = entity.Cellphone;
-                //Activity log pending
+                oldProfile.FirstName = entity.FirstName;
+                oldProfile.LastName = entity.LastName;
+                oldProfile.Birthday = entity.Birthday;
+                oldProfile.Cellphone = entity.Cellphone;
+                oldProfile.ActivityLogID = entity.ActivityLogID;
                 Db.Person.Update(entity);
             }
         }

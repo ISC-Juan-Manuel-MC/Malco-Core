@@ -10,10 +10,6 @@ namespace MCC.Domain.Models.General
 {
     public class Profile: BasicModel
     {
-        public Profile(): base()
-        {
-        }
-
         /// <summary>
         /// Is the registered email account
         /// </summary>
@@ -23,8 +19,8 @@ namespace MCC.Domain.Models.General
         public ProfileStatus Status { get; set; } = ProfileStatus.CREATED;
 
         #region FKs
-        public List<ProfileToOrganizations> FKProfileToOrganizations { get; set; } = new List<ProfileToOrganizations>();
-        public PersonToProfile FKPersonToProfile { get; set; } = new PersonToProfile();
+        public virtual List<ProfileToOrganizations>? FKProfileToOrganizations { get; set; }
+        public virtual PersonToProfile? FKPersonToProfile { get; set; }
         #endregion
 
         /// <summary>

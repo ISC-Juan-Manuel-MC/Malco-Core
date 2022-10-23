@@ -9,34 +9,30 @@ namespace Domain.Models
 {
     public class BasicModel
     {
-        protected Guid ActivityLogID { get; set; } = Guid.Empty;
+        public Guid ActivityLogID { get; set; } = Guid.Empty;
 
-        public ActivityLog? ActivityLog { get; set; } = null;
-
-
-        //public ActivityLog? ActivityLog 
-        //{ 
-        //    get => ActivityLog; 
-        //    set
-        //    {
-        //        if(value != ActivityLog)
-        //        {
-        //            if (value != null)
-        //            {
-        //                ActivityLogID = value.ActivityLogID;
-        //            }
-        //            else
-        //            {
-        //                ActivityLogID = Guid.Empty;
-        //            }
-        //            ActivityLog = value;
-        //        }
-        //    }
-        //}
-
-        public BasicModel()
+        #region FKs
+        public virtual ActivityLog? FKActivityLog { get; set; }
+        /*
+        public virtual ActivityLog? FKActivityLog
         {
-            this.ActivityLog = new ActivityLog();
+            get => FKActivityLog;
+            set
+            {
+                FKActivityLog = value;
+                if(value == null)
+                {
+                    this.ActivityLogID = Guid.Empty;
+                }
+                else
+                {
+                    this.ActivityLogID = value.ActivityLogID;
+                }
+            }
         }
+        */
+        #endregion
+
+
     }
 }

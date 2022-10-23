@@ -14,16 +14,20 @@ namespace Infrastructure.DataAccess.Configs.General
     {
         public void Configure(EntityTypeBuilder<ProfileToOrganizations> builder)
         {
-            builder.ToTable("ProfileToOrganizations");
+            builder.ToTable("ProfileToOrganizations", "Module_general");
             builder.HasKey(e => new { e.ProfileID, e.OrganizationID });
 
             builder
                 .HasOne(rel => rel.FKOrganization)
-                .WithMany(org => org.FKProfileToOrganizations);
+                .WithMany(org => org.FKProfileToOrganizations)
+                .HasForeignKey(FK => FK.OrganizationID)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .HasOne(rel => rel.FKProfile)
-                .WithMany(profile => profile.FKProfileToOrganizations);
+                .WithMany(profile => profile.FKProfileToOrganizations)
+                .HasForeignKey(FK => FK.ProfileID)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

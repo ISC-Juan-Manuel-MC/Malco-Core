@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MCC.Domain.Models.Security
 {
-    public class App
+    public class App : BasicModel
     {
         public Guid AppID { get; set; } = Guid.Empty;
         public String Name { get; set; } = String.Empty;

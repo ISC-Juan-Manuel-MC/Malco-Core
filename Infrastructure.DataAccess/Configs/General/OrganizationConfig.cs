@@ -14,8 +14,22 @@ namespace Infrastructure.DataAccess.Configs.General
     {
         public void Configure(EntityTypeBuilder<Organization> builder)
         {
-            builder.ToTable("Organizations");
+            builder.ToTable("Organizations", "Module_general");
             builder.HasKey(org => org.OrganizationID);
+
+            builder
+                .HasOne(org => org.FKActivityLog)
+                .WithOne(log => log.FKOrganization)
+                .HasForeignKey<Organization>(FK => FK.ActivityLogID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder
+               .HasMany(org => org.FKPersonToOrganization)
+               .WithOne(rel => rel.FKOrganization);
+
+            builder
+               .HasMany(org => org.FKProfileToOrganizations)
+               .WithOne(rel => rel.FKOrganization);
         }
     }
 }

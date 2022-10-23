@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCC.Domain.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,16 @@ namespace MCC.Domain.Models.Security
         public Guid ViewID { get; set; } = Guid.Empty;
         public Guid? ActivityLogIDReference { get; set; } = null;
         public string? Comments { get; set; } = null;
+
+        #region FKs
+        public virtual App? FKApp { get; set; }
+        public virtual Organization? FKOrganization { get; set; }
+        public virtual Profile? FKProfile { get; set; }
+        public virtual Views? FKView { get; set; }
+        public virtual ActivityLog? FKActivityLog { get; set; }
+
+        #endregion
+
 
         /// <summary>
         /// <list type="bullet">

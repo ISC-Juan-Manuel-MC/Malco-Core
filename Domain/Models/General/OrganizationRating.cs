@@ -14,7 +14,7 @@ namespace MCC.Domain.Models.General
         public bool Excluded { get; set; } = false;
 
         #region FKs
-        public Organization FKOrganization { get; set; } = new Organization();
+        public virtual Organization? FKOrganization { get; set; } 
 
         #endregion
     }
