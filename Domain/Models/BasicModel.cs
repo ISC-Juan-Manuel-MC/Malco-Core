@@ -13,24 +13,6 @@ namespace Domain.Models
 
         #region FKs
         public virtual ActivityLog? FKActivityLog { get; set; }
-        /*
-        public virtual ActivityLog? FKActivityLog
-        {
-            get => FKActivityLog;
-            set
-            {
-                FKActivityLog = value;
-                if(value == null)
-                {
-                    this.ActivityLogID = Guid.Empty;
-                }
-                else
-                {
-                    this.ActivityLogID = value.ActivityLogID;
-                }
-            }
-        }
-        */
         #endregion
 
 

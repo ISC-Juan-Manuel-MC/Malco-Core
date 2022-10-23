@@ -23,6 +23,7 @@ namespace MCC.Domain.Models.Security
         public virtual App? FKApp { get; set; }
         public virtual Organization? FKOrganization { get; set; }
         public virtual Profile? FKProfile { get; set; }
+        public virtual Person? FKPerson { get; set; }
         public virtual Views? FKView { get; set; }
         public virtual ActivityLog? FKActivityLog { get; set; }
 

@@ -61,6 +61,10 @@ namespace Infrastructure.API.Controllers
                 {
                     return NotFound(ex.Message);
                 }
+                else if (ex.GetType() == typeof(ExistingEntityError))
+                {
+                    return Conflict(ex.Message);
+                }
                 else
                 {
                     return BadRequest(ex.Message);

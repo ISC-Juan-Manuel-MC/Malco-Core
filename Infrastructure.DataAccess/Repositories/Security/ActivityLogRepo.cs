@@ -73,10 +73,27 @@ namespace Infrastructure.DataAccess.Repositories.Security
             ActivityLog? OldEntity = Find(entity.ActivityLogID);
             if (OldEntity != null)
             {
-                OldEntity.ActivityLogTypeID = entity.ActivityLogTypeID;
-                OldEntity.ActivityLogIDReference = entity.ActivityLogID;
-                OldEntity.ActivityLogID = Guid.NewGuid();
-                Db.ActivityLog.Update(entity);
+                ActivityLog entityToUpdate = new ActivityLog
+                {
+                    FKActivityLog = OldEntity,
+                    OrganizationID = OldEntity.OrganizationID,
+                    AppID = OldEntity.AppID,
+                    ViewID = OldEntity.ViewID,
+
+                    ActivityLogID = new Guid(),
+                    ActivityLogTypeID = entity.ActivityLogTypeID,
+                    ActivityLogIDReference = entity.ActivityLogID,
+                    ProfileID = entity.ProfileID,
+                    Comments = entity.Comments
+                };
+
+                Add(entityToUpdate);
+
+                entity.ActivityLogIDReference = entity.ActivityLogID;
+                entity.ActivityLogID = entityToUpdate.ActivityLogID;
+                entity.OrganizationID = entityToUpdate.OrganizationID;
+                entity.AppID = entityToUpdate.AppID;
+                entity.ViewID = entityToUpdate.ViewID;
             }
         }
 

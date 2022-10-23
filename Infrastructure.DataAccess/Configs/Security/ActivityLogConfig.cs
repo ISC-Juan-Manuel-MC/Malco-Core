@@ -23,28 +23,31 @@ namespace Infrastructure.DataAccess.Configs.Security
                 .WithOne();
 
             builder
-               .HasOne(e => e.FKOrganization)
-               .WithOne();
+               .HasOne(log => log.FKOrganization)
+               .WithOne(org => org.FKActivityLog);
 
 
             builder
-               .HasOne(e => e.FKProfile)
+               .HasOne(log => log.FKProfile)
+               .WithOne(profile => profile.FKActivityLog);
+
+            builder
+              .HasOne(log => log.FKPerson)
+              .WithOne(person => person.FKActivityLog);
+
+            builder
+               .HasOne(log => log.FKView)
+               .WithOne(view => view.FKActivityLog);
+
+            builder
+               .HasOne(log => log.FKActivityLog)
                .WithOne();
 
             builder
-               .HasOne(e => e.FKView)
-               .WithOne();
-
-            builder
-               .HasOne(e => e.FKActivityLog)
-               .WithOne();
-
-            /*
-            builder
-                .HasOne(org => org.FKActivityLog)
-                .WithOne()
-                .HasForeignKey<ActivityLog>(FK => FK.ActivityLogID);
-            */
+               .HasOne(log => log.FKActivityLog)
+               .WithOne()
+               .HasForeignKey<ActivityLog>(FK => FK.ActivityLogIDReference)
+               .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

@@ -112,7 +112,10 @@ namespace Application.Services.UserCases
                 if (oldPerson != null)
                 {
                     NewPerson.PersonID = oldPerson.PersonID;
-                    NewPerson.FKActivityLog = Log.MODIFICATION(oldPerson.ActivityLogID,email);
+                    NewPerson.FKActivityLog = Log.MODIFICATION(
+                        oldPerson.ActivityLogID,
+                        email,
+                        "This person created another profile");
                     PersonService.Update(NewPerson);
                 }
                 else
@@ -121,7 +124,12 @@ namespace Application.Services.UserCases
                     NewPerson = PersonService.Add(NewPerson);
                 }
 
-                NewProfile.FKActivityLog = NewPerson.FKActivityLog;
+                NewProfile.FKActivityLog = Log.CREATION(
+                    jwt.OrganizationID, 
+                    jwt.AppID, 
+                    new Guid(Views.REGISTRATION), 
+                    email,
+                    NewPerson.FKActivityLog.Comments);
                 NewProfile.Password = InternalTools.Encrypt("encryption Key", NewProfile.Password);
                 NewProfile = ProfileService.Add(NewProfile);
                 PersonToProfileService.JoinPersonToProfile(NewPerson.PersonID, NewProfile.ProfileID);

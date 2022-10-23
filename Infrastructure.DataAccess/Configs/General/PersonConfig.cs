@@ -18,6 +18,12 @@ namespace Infrastructure.DataAccess.Configs.General
             builder.HasKey(person => person.PersonID);
 
             builder
+               .HasOne(person => person.FKActivityLog)
+               .WithOne()
+               .HasForeignKey<Person>(FK => FK.ActivityLogID)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            builder
                .HasMany(persona => persona.FKPersonToOrganization)
                .WithOne(rel => rel.FKPerson);
 

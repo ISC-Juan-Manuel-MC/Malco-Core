@@ -23,8 +23,8 @@ namespace Infrastructure.DataAccess.Repositories.General
 
         public Profile Add(Profile entity)
         {
-            Db.Profile.Add(entity);
             entity.ActivityLogID = entity.FKActivityLog.ActivityLogID;
+            Db.Profile.Add(entity);
             return entity;
         }
 
@@ -87,7 +87,10 @@ namespace Infrastructure.DataAccess.Repositories.General
 
         public void RollbackTransaction()
         {
-            Db.Database.RollbackTransaction();
+            if (Db.Database.CurrentTransaction != null)
+            {
+                Db.Database.RollbackTransaction();
+            }
         }
 
         public void SendToSaveAllChanges()
@@ -107,7 +110,7 @@ namespace Infrastructure.DataAccess.Repositories.General
             {
                 oldEntity.DisplayName = entity.DisplayName;
                 oldEntity.Password = entity.Password;
-                oldEntity.ActivityLogID = entity.ActivityLogID;
+                oldEntity.ActivityLogID = entity.FKActivityLog.ActivityLogID;
                 Db.Profile.Update(entity);
             }
         }

@@ -62,16 +62,9 @@ namespace Application.Services.UserCases
                             PeopleMapper.GetApplicationEntity(Person)
                             );
                 }
-                else
-                {
-                    throw new UserOrPasswordIncorrectError();
-                }
             }
-            else
-            {
-                throw new EntityNotExistError("Profile");
-            }
-            
+
+            throw new UserOrPasswordIncorrectError();
         }
     }
 }

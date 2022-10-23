@@ -17,6 +17,13 @@ namespace Infrastructure.DataAccess.Configs.General
             builder.ToTable("PersonToProfile", "Module_general");
             builder.HasKey(e => new { e.PersonID, e.ProfileID });
 
+            builder.HasIndex(e => e.PersonID)
+                .IsUnique(false);
+            builder.HasIndex(e => e.ProfileID)
+                .IsUnique(false);
+            builder.HasIndex(e => new { e.PersonID, e.ProfileID })
+                .IsUnique(true);
+
             builder
                 .HasOne(rel => rel.FKPerson)
                 .WithOne(person => person.FKPersonToProfile)

@@ -17,6 +17,13 @@ namespace Infrastructure.DataAccess.Configs.General
             builder.ToTable("PersonsToOrganization", "Module_general");
             builder.HasKey(e => new {e.PersonID,e.OrganizationID});
 
+            builder.HasIndex(e => e.PersonID)
+                .IsUnique(false);
+            builder.HasIndex(e => e.OrganizationID)
+                .IsUnique(false);
+            builder.HasIndex(e => new { e.PersonID, e.OrganizationID })
+                .IsUnique(true);
+
             builder
                 .HasOne(rel => rel.FKOrganization)
                 .WithMany(org => org.FKPersonToOrganization)

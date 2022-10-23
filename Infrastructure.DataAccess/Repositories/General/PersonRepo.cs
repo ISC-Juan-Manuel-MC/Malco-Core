@@ -87,8 +87,8 @@ namespace Infrastructure.DataAccess.Repositories.General
                 oldProfile.LastName = entity.LastName;
                 oldProfile.Birthday = entity.Birthday;
                 oldProfile.Cellphone = entity.Cellphone;
-                oldProfile.ActivityLogID = entity.ActivityLogID;
-                Db.Person.Update(entity);
+                oldProfile.ActivityLogID = entity.FKActivityLog.ActivityLogID;
+                Db.Person.Update(oldProfile);
             }
         }
     }

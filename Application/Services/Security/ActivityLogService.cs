@@ -17,21 +17,18 @@ namespace Application.Services.Security
             repository = profileRepo;
         }
 
-        private ActivityLog? GetActivityLogAdjusted(Guid ActivityLogID, ActivityLog.Types ActivityLogTypeID)
+        private ActivityLog GetActivityLogAdjusted(Guid ActivityLogID, ActivityLog.Types ActivityLogTypeID)
         {
-            ActivityLog? entity = repository.Find(ActivityLogID);
-            if (entity == null)
+            ActivityLog entity = new ActivityLog
             {
-                entity = new ActivityLog();
-            }
-
-            entity.ActivityLogTypeID = ActivityLogTypeID;
-            entity.ActivityLogIDReference = entity.ActivityLogID;
+                ActivityLogID = ActivityLogID,
+                ActivityLogTypeID = ActivityLogTypeID
+            };
 
             return entity;
         }
 
-        public ActivityLog CREATION(Guid OrganizationID, Guid AppID, Guid ViewID, string ProfileID)
+        public ActivityLog CREATION(Guid OrganizationID, Guid AppID, Guid ViewID, string ProfileID, string? Comments = null)
         {
             ActivityLog entity = new ActivityLog
             {
@@ -40,19 +37,23 @@ namespace Application.Services.Security
                 OrganizationID = OrganizationID,
                 AppID = AppID,
                 ViewID = ViewID,
-                ProfileID = ProfileID
-            };
+                ProfileID = ProfileID,
+                Comments = Comments,
+        };
             repository.Add(entity);
+            repository.SendToSaveAllChanges();
             return entity;
         }
 
-        public ActivityLog? DELETION(Guid LogID, string ProfileID)
+        public ActivityLog? DELETION(Guid LogID, string ProfileID, string? Comments = null)
         {
             ActivityLog? entity = GetActivityLogAdjusted(LogID, ActivityLog.Types.DELETION);
             if (entity != null)
             {
                 entity.ProfileID = ProfileID;
+                entity.Comments = Comments;
                 repository.Update(entity);
+                repository.SendToSaveAllChanges();
             }
 
             return entity;
@@ -65,6 +66,7 @@ namespace Application.Services.Security
             {
                 entity.ProfileID = ProfileID;
                 repository.Update(entity);
+                repository.SendToSaveAllChanges();
             }
 
             return entity;
@@ -77,19 +79,19 @@ namespace Application.Services.Security
             {
                 entity.ProfileID = ProfileID;
                 repository.Update(entity);
+                repository.SendToSaveAllChanges();
             }
 
             return entity;
         }
 
-        public ActivityLog? MODIFICATION(Guid LogID, string ProfileID)
+        public ActivityLog? MODIFICATION(Guid LogID, string ProfileID, string? Comments = null)
         {
-            ActivityLog? entity = GetActivityLogAdjusted(LogID, ActivityLog.Types.MODIFICATION);
-            if (entity != null)
-            {
-                entity.ProfileID = ProfileID;
-                repository.Update(entity);
-            }
+            ActivityLog entity = GetActivityLogAdjusted(LogID, ActivityLog.Types.MODIFICATION);
+            entity.ProfileID = ProfileID;
+            entity.Comments = Comments;
+            repository.Update(entity);
+            repository.SendToSaveAllChanges();
 
             return entity;
         }
