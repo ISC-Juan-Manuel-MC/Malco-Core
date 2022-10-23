@@ -24,6 +24,7 @@ namespace Infrastructure.DataAccess.Repositories.General
         public Organization Add(Organization entity)
         {
             entity.OrganizationID = Guid.NewGuid();
+            entity.ActivityLogID = entity.FKActivityLog.ActivityLogID;
             Db.Organization.Add(entity);
             return entity;
         }

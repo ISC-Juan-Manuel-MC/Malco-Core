@@ -24,6 +24,7 @@ namespace Infrastructure.DataAccess.Repositories.General
         public Profile Add(Profile entity)
         {
             Db.Profile.Add(entity);
+            entity.ActivityLogID = entity.FKActivityLog.ActivityLogID;
             return entity;
         }
 

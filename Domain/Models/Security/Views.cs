@@ -12,5 +12,10 @@ namespace MCC.Domain.Models.Security
         public Guid ViewID { get; set; } = Guid.Empty;
         public String Name { get; set; } = String.Empty;
         public bool IsEnabled { get; set; } = true;
+
+        public const String
+        REGISTRATION = "72a9746c-2d7d-479e-b598-0dae67830550",
+        ORGANIZATION = "";
+
     }
 }

@@ -9,13 +9,17 @@ using Application.Models.General;
 using Application.Models.Mappers.General;
 using Application.Models.Security;
 using Application.Services.General;
+using Application.Services.Security;
 using MCC.Domain.Interfaces.Repositories.General;
+using MCC.Domain.Interfaces.Repositories.Security;
 using MCC.Domain.Models.General;
+using MCC.Domain.Models.Security;
 
 namespace Application.Services.UserCases
 {
     public class RegistrationService: BasicService
     {
+        private readonly ActivityLogService Log;
         private readonly PersonToProfileService PersonToProfileService;
         private readonly PersonService PersonService;
         private readonly ProfileService ProfileService;
@@ -23,11 +27,13 @@ namespace Application.Services.UserCases
         private readonly PersonMapper PeopleMapper;
 
         public RegistrationService(
+            IActivityLogRepo<ActivityLog, Guid> activityLogRepo,
             IPersonToProfileRepo<PersonToProfile, Guid, String> personToProfileRepo,
             IPersonRepo<Person, Guid> personRepo,
             IProfileRepo<Profile, String> profileRepo
         )
         {
+            Log = new ActivityLogService(activityLogRepo);
             PersonToProfileService = new PersonToProfileService(personToProfileRepo);
             PersonService = new PersonService(personRepo);
             ProfileService = new ProfileService(profileRepo);
@@ -99,20 +105,24 @@ namespace Application.Services.UserCases
             try
             {
                 Validations.EntityExist(ProfileService.FindByID(NewProfile.ProfileID));
-                Person oldPerson = PersonService.FindByName(NewPerson.FirstName, NewPerson.LastName);
+                Person? oldPerson = PersonService.FindByName(NewPerson.FirstName, NewPerson.LastName);
 
                 ProfileService.BeginTransaction();
 
                 if (oldPerson != null)
                 {
                     NewPerson.PersonID = oldPerson.PersonID;
+                    NewPerson.FKActivityLog = Log.MODIFICATION(oldPerson.ActivityLogID,email);
                     PersonService.Update(NewPerson);
                 }
                 else
                 {
+                    NewPerson.FKActivityLog = Log.CREATION(jwt.OrganizationID, jwt.AppID, new Guid(Views.REGISTRATION), email);
                     NewPerson = PersonService.Add(NewPerson);
                 }
 
+                NewProfile.FKActivityLog = NewPerson.FKActivityLog;
+                NewProfile.Password = InternalTools.Encrypt("encryption Key", NewProfile.Password);
                 NewProfile = ProfileService.Add(NewProfile);
                 PersonToProfileService.JoinPersonToProfile(NewPerson.PersonID, NewProfile.ProfileID);
                 //Join to organization

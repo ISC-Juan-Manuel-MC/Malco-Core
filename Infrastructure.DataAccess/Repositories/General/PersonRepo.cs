@@ -23,6 +23,7 @@ namespace Infrastructure.DataAccess.Repositories.General
         public Person Add(Person entity)
         {
             entity.PersonID = Guid.NewGuid();
+            entity.ActivityLogID = entity.FKActivityLog.ActivityLogID;
             Db.Person.Add(entity);
             return entity;
         }

@@ -9,6 +9,7 @@ using Infrastructure.DataAccess.Contexts;
 using Infrastructure.DataAccess.Repositories.General;
 using System.Text.Json;
 using Application.Models.Security;
+using Infrastructure.DataAccess.Repositories.Security;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Infrastructure.API.Controllers
@@ -26,10 +27,11 @@ namespace Infrastructure.API.Controllers
         private RegistrationService CreateRegistrationService()
         {
             MCCContext Database = new();
+            ActivityLogRepo LogRepo = new(Database);
             ProfileRepo ProfileRepo = new(Database);
             PersonToProfileRepo PersonToProfileRepo = new(Database);
             PersonRepo PersonRepo = new(Database);
-            return new RegistrationService(PersonToProfileRepo, PersonRepo, ProfileRepo);
+            return new RegistrationService(LogRepo, PersonToProfileRepo, PersonRepo, ProfileRepo);
         }
 
         // POST api/<Registration>
